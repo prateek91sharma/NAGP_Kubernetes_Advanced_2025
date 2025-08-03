@@ -27,7 +27,7 @@ DELETE {{domain}}/employee?id=1
 Docker image is build using Dockerfile using below command in the base folder
 docker build . -t kubernetes_advanced_2025
 
-Then it is pushed to the docker hub via below command
+Then it is pushed to the docker hub via below command:
 docker push prateek91sharma/kubernetes_advanced_2025
 
 ### Additional Links
