@@ -59,3 +59,14 @@ GET {{domain}}/employee
 
 #### Delete Employee
 DELETE {{domain}}/employee?id=1
+
+
+## Testing
+
+Post creation of database used below command to test the connectivity using psql
+`kubectl run -it --rm --image=postgres:latest postgres-client -- /bin/bash` <br/>
+Inside bash following commands to connect to db <br/>
+`psql -h postgres-headless-svc -U "postgres" -d "postgres"` <br/>
+On prompt enter the password. Post entering psql command line, the connectivity is established. <br/>
+Run below command to check if app server had initialized the db as well  <br/>
+`select * from employee;`

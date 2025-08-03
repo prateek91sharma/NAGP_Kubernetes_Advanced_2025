@@ -17,6 +17,8 @@ spec:
         - name: postgres
           image: postgres:16
           env:
+            - name: PGDATA
+              value: /var/lib/postgresql/data/data_files/
             - name: POSTGRES_DB
               value: postgres
             - name: POSTGRES_USER
@@ -31,7 +33,7 @@ spec:
               name: postgres
           volumeMounts:
             - name: postgres-data
-              mountPath: /var/lib/postgresql/data/custom
+              mountPath: /var/lib/postgresql/data
   volumeClaimTemplates:
     - metadata:
         name: postgres-data
