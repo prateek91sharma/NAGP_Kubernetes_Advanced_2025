@@ -70,3 +70,6 @@ Inside bash following commands to connect to db <br/>
 On prompt enter the password. Post entering psql command line, the connectivity is established. <br/>
 Run below command to check if app server had initialized the db as well  <br/>
 `select * from employee;`
+
+For checking all injected parameters from configmap and secrets use below
+`kubectl exec <pod-name> -- printenv`

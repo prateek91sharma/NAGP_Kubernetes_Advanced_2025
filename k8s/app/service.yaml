@@ -3,12 +3,12 @@ kind: Service
 metadata:
   name: employee-service
   labels:
-    application: employee-service
+    app: employee-service
     type: backend
 spec:
   type: NodePort
   selector:
-    application: employee-service
+    app: employee-service
     type: backend
   ports:
     - protocol: TCP
