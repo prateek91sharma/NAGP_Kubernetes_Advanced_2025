@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-service
+  labels:
+    app: employee-service
+    type: backend
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: employee-service
+      type: backend
+  template:
+    metadata:
+      labels:
+        app: employee-service
+        type: backend
+    spec:
+      containers:
+        - image: prateek91sharma/kubernetes_advanced_2025:latest
+          imagePullPolicy: Always
+          name: employee-service
+          ports:
+            - containerPort: 8080
+              name: app-port
+          env:
+            - name: DB_HOSTNAME_TEST
+              value: test
+            - name: DB_PORT_TEST
+              value: "5432"
+          envFrom:
+            - secretRef:
+                name: employee-service-secrets
+            - configMapRef:
+                name: employee-service-config

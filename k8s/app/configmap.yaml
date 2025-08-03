@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: employee-service-config
+data:
+  DB_URL: jdbc:postgresql://postgres-headless-svc:5432/postgres
+  DB_USER: postgres
