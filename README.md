@@ -22,7 +22,14 @@ GET {{domain}}/employee
 Delete Employee
 DELETE {{domain}}/employee?id=1
 
+### Git Repo setup
+git clone  https://github.com/prateek91sharma/NAGP_Kubernetes_Advanced_2025.git
+cd NAGP_Kubernetes_Advanced_2025/
+git checkout master
+
 ### Docker image
+Build runnable jar with below command
+gradle bootJar
 
 Docker image is build using Dockerfile using below command in the base folder
 docker build . -t kubernetes_advanced_2025
