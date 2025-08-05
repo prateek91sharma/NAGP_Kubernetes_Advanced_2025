@@ -1,5 +1,9 @@
 # NAGP Kubernetes Microservice Documentation
 
+## Overview
+This is a java based microservice with PostgresSQL as backing database to
+persist records and fetch whenever requested by the exposed REST API.
+
 ## Setup
 
 ### Git Repo setup
@@ -8,19 +12,44 @@ Below steps to be performed for git repo setup.
 2. `cd NAGP_Kubernetes_Advanced_2025/`
 3. `git checkout master`
 
-### Docker image
-Docker repo web URL for reference
-https://hub.docker.com/repository/docker/prateek91sharma/kubernetes_advanced_2025
-
-Build runnable jar with the command
+### Build runnable jar
 `gradle bootJar`
 
+### Docker image creation
 Docker image is build using Dockerfile using below command in the base folder <br/>
 `docker build . -t prateek91sharma/kubernetes_advanced_2025`
 
 Then it is pushed to the docker hub via below command:<br/>
 `docker login` (One time only)<br/>
 `docker push prateek91sharma/kubernetes_advanced_2025`
+
+Docker repo web URL for application image<br/>
+https://hub.docker.com/r/prateek91sharma/kubernetes_advanced_2025
+
+## API reference Doc
+
+The below REST APIs are exposed. On local environment  the {{domain}} is http://localhost:8080 
+and on GCP cluster the Load Balancer endpoint is http://34.149.127.114/
+(this is an ephemeral IP and may change on recreation of ingress)
+
+#### View Records API
+http://34.149.127.114/employee
+
+#### Add Record:
+POST {{domain}}/employee
+{
+"firstName": "John",
+"lastName": "Doe",
+"employeeId": "12345"
+}
+
+#### Get Record:
+GET {{domain}}/employee
+
+#### Delete Record
+DELETE {{domain}}/employee?id=1
+
+##### [Postman collection](NAGP%202025.postman_collection.json)
 
 ### K8s Deployment steps
 
@@ -37,29 +66,6 @@ For postgres database we need to deploy headless service and deployment in below
 1. secrets.yaml
 2. headless-service.yaml
 3. postgres-stateful-set.yaml
-
-## API reference Doc
-
-This is a java based microservice with PostgresSQL as backing database to
-persist records and fetch whenever requested by the exposed REST API.
-
-The below REST APIs are exposed on 8080 port by the application layer. On local environment
-the domain is http://localhost:8080 and on GCP cluster the Load Balancer endpoint is
-
-#### Add Employee:
-POST {{domain}}/employee
-{
-"firstName": "John",
-"lastName": "Doe",
-"employeeId": "12345"
-}
-
-#### Get Employee:
-GET {{domain}}/employee
-
-#### Delete Employee
-DELETE {{domain}}/employee?id=1
-
 
 ## Testing
 
