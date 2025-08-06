@@ -1,4 +1,4 @@
-# NAGP Kubernetes Microservice Documentation
+# NAGP Kubernetes Assignment Documentation
 
 ## Overview
 This is a java based microservice with PostgresSQL as backing database to
@@ -56,20 +56,20 @@ DELETE {{domain}}/employee?id=1
 The k8s folder contains manifest files for application and database layers
 in k8s/app and k8s/db folders respectively
 
-For app deployment the yaml manifests are applied based on dependency order as below.
+For microservice the following yaml manifests are applied.
 1. secrets.yaml and configmap.yaml
 2. deployment.yaml
 3. service.yaml
 4. ingress.yaml
 
-For postgres database we need to deploy headless service and deployment in below order.
+For postgres database we need to deploy below resources.
 1. secrets.yaml
 2. headless-service.yaml
 3. postgres-stateful-set.yaml
 
 ## Testing
 
-Post creation of database used below command to test the connectivity using psql
+Post creation of database used below command to test the connectivity using psql <br/>
 `kubectl run -it --rm --image=postgres:latest postgres-client -- /bin/bash` <br/>
 Inside bash following commands to connect to db <br/>
 `psql -h postgres-headless-svc -U "postgres" -d "postgres"` <br/>
